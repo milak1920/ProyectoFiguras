@@ -9,12 +9,18 @@
 <body>
 <h1>Hola mundo</h1>
 
-    <form action="/CrearFi" method="post">
+    <form action="/Crearr" method="post">
          <p>Numero: <input type="text" name="nombre"  ></p>
          <p>Numero: <input type="text" name="apellido"  ></p>
          <input type="submit" value="Enviar">
     </form>
-
-
+  <c:choose>
+             <c:when test = "${not empty resultado}">
+                <p>el resultado es : ${resultado}</p>
+             </c:when>
+             <c:otherwise>
+                <p>no es correcto</p>
+             </c:otherwise>
+         </c:choose>
 </body>
 </html>

@@ -1,1 +1,4 @@
+Package\DAO\UsuarioDao.class
+Package\Modelo\Usuario.class
 Package\Controlador\FiguraControl.class
+Package\DAO\UsuarioDaoImplem.class
