@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/Crearr")
+@WebServlet(value = "/CrearFiguras")
 public class FiguraControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class FiguraControl extends HttpServlet {
 
           String nombre = req.getParameter("nombre");
           String apellido = req.getParameter("apellido");
-
+/*
          DBConnection.connection();
          System.out.println( DBConnection.connection());
 
@@ -41,7 +41,8 @@ public class FiguraControl extends HttpServlet {
         UsuarioDao usuarioDao = new UsuarioDaoImplem();
         usuarioDao.insert(nuevo);
 
-         req.setAttribute("resultado",nombre + " " + apellido);
+        */
+        req.setAttribute("resultado",nombre + " " + apellido);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/CrearFiguras.jsp");

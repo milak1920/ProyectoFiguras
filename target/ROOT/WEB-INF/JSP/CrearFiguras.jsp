@@ -9,7 +9,7 @@
 <body>
 <h1>Hola mundo</h1>
 
-    <form action="/Crearr" method="post">
+    <form action="/CrearFiguras" method="post">
          <p>Numero: <input type="text" name="nombre"  ></p>
          <p>Numero: <input type="text" name="apellido"  ></p>
          <input type="submit" value="Enviar">

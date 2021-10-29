@@ -1,32 +1,26 @@
 package Package.Modelo;
 
 public class Usuario {
-    private Integer userId;
-    private String userName;
+    private Integer usuario_id;
+    private String nombre;
     private String password;
 
     public Usuario(){}
 
-    public Usuario(Integer userId, String userName, String password) {
-        this.userId = userId;
-        this.userName = userName;
-        this.password = password;
+    public Integer getUsuario_id() {
+        return usuario_id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setUsuario_id(Integer usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPassword() {
@@ -36,4 +30,6 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

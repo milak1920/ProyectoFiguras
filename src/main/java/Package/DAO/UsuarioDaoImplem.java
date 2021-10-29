@@ -2,22 +2,21 @@ package Package.DAO;
 
 import Package.Modelo.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UsuarioDaoImplem implements UsuarioDao {
-
+   // Connection con = DBConnection.connection();
+   DBConnection dataBase = new DBConnection();
     @Override
-    public void insert(Usuario usuario) {
-        Connection con = DBConnection.connection();
+    public void agregar(Usuario usuario) {
+
+        Connection con = dataBase.getConnection();
         PreparedStatement ps;
 
          try {
-             String sql = "INSERT INTO user(name, password) VALUES(?,?)";
+             String sql = "INSERT INTO usuario(nombre, password) VALUES(?,?)";
              ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-             ps.setString(1, usuario.getUserName());
+             ps.setString(1, usuario.getNombre());
              ps.setString(2, usuario.getPassword());
              ps.execute();
              System.out.println("Data has been inserted!");
@@ -30,4 +29,33 @@ public class UsuarioDaoImplem implements UsuarioDao {
 
 
     }
+
+    @Override
+    public Usuario buscarUsuario(String nombre) {
+        Connection con = dataBase.getConnection();
+        PreparedStatement ps;
+        try {
+            String sql = "select * from usuario where nombre = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1,nombre);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Usuario usuario = new Usuario();
+                usuario.setUsuario_id(rs.getInt("usuario_id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setPassword(rs.getString("password"));
+                return usuario;
+
+            }
+            return null;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+        }
+        return null;
+
+    }
+
+
 }

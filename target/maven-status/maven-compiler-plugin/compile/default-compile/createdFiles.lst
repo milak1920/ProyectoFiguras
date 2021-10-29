@@ -1,4 +1,12 @@
-Package\DAO\UsuarioDao.class
-Package\Modelo\Usuario.class
 Package\Controlador\FiguraControl.class
+Package\Service\RegistroUsuarioServicio.class
+Package\Modelo\Usuario.class
+Package\Util\MyProperties.class
+Package\Controlador\CrearFiguraControl.class
+Package\Controlador\RegistroUsuarioControl.class
+Package\DAO\FiguraDaoImplem.class
+Package\DAO\UsuarioDao.class
+Package\DAO\DBConnection.class
+Package\Modelo\Figura.class
+Package\DAO\FiguraDao.class
 Package\DAO\UsuarioDaoImplem.class
