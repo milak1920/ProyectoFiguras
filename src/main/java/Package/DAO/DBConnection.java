@@ -10,20 +10,19 @@ import java.util.Properties;
 public class DBConnection {
 
     MyProperties myProperties = new MyProperties();
-
+    Connection connection = null;
    public Connection getConnection(){
         try {
             Class.forName("org.sqlite.JDBC");
             Properties properties = myProperties.getProps();
             String jdbcStr = properties.getProperty("jdbcstring");
-            Connection connection = DriverManager.getConnection(jdbcStr);
+             connection = DriverManager.getConnection(jdbcStr);
             System.out.println("conectado!!");
             return connection;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
 
     /*

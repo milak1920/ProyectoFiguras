@@ -7,7 +7,7 @@ import Package.Modelo.Usuario;
 public class RegistroUsuarioServicio {
    UsuarioDao usuarioDao = new UsuarioDaoImplem();
 
-   public boolean RegistroUsuario(String nombre,String password) {
+   public boolean registroUsuario(String nombre,String password) {
        //validamos que el usuario no exista en la base de datos
         Usuario validar =  usuarioDao.buscarUsuario(nombre);
         if (validar != null){
@@ -22,5 +22,17 @@ public class RegistroUsuarioServicio {
             return false;
         }
     }
+
+   public boolean usuarioAutorizado(String nombre, String password){
+
+       Usuario validarAcceso =  usuarioDao.buscarUsuario(nombre);
+        if (validarAcceso == null) return false;
+       return password.equals(validarAcceso.getPassword());
+   }
+
+   public Integer buscarId(String nombre){
+       Usuario validar =  usuarioDao.buscarUsuario(nombre);
+       return validar.getUsuario_id();
+   }
 
 }

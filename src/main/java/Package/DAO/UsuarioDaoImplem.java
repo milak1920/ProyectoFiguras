@@ -6,13 +6,11 @@ import java.sql.*;
 
 public class UsuarioDaoImplem implements UsuarioDao {
    // Connection con = DBConnection.connection();
-   DBConnection dataBase = new DBConnection();
+    DBConnection dataBase = new DBConnection();
+    Connection con = dataBase.getConnection();
     @Override
     public void agregar(Usuario usuario) {
-
-        Connection con = dataBase.getConnection();
         PreparedStatement ps;
-
          try {
              String sql = "INSERT INTO usuario(nombre, password) VALUES(?,?)";
              ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -20,19 +18,22 @@ public class UsuarioDaoImplem implements UsuarioDao {
              ps.setString(2, usuario.getPassword());
              ps.execute();
              System.out.println("Data has been inserted!");
-
-
-        } catch (SQLException e) {
+         } catch (SQLException e) {
             e.printStackTrace();
              System.out.println(e.toString());
-        }
+        }finally {
+             try {
+                 con.close();
+             } catch (SQLException ex) {
+                 System.out.println("cerrado db");            }
+         }
+
 
 
     }
 
     @Override
     public Usuario buscarUsuario(String nombre) {
-        Connection con = dataBase.getConnection();
         PreparedStatement ps;
         try {
             String sql = "select * from usuario where nombre = ? ";
@@ -45,13 +46,17 @@ public class UsuarioDaoImplem implements UsuarioDao {
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setPassword(rs.getString("password"));
                 return usuario;
+             }
 
-            }
-            return null;
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
+        }finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println("cerrado db");            }
         }
         return null;
 

@@ -13,6 +13,7 @@ public class Figura {
     private Integer CoordY;
     private String colorFondo;
     private String colorBorde;
+    private Integer usuarioID;
 
 
     public Figura() {
@@ -41,7 +42,6 @@ public class Figura {
     public void setNombreFigura(String nombreFigura) {
         this.nombreFigura = nombreFigura;
     }
-
 
     public Integer getGrandor() {
         return grandor;
@@ -81,6 +81,14 @@ public class Figura {
 
     public void setColorBorde(String colorBorde) {
         this.colorBorde = colorBorde;
+    }
+
+    public Integer getUsuarioID() {
+        return usuarioID;
+    }
+
+    public void setUsuarioID(Integer usuarioID) {
+        this.usuarioID = usuarioID;
     }
 }
 

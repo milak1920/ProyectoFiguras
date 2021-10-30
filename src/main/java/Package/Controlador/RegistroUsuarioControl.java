@@ -26,7 +26,7 @@ public class RegistroUsuarioControl extends HttpServlet {
         String nombre = req.getParameter("nombre");
         String password = req.getParameter("password");
 
-        if(registroUsuario.RegistroUsuario(nombre,password)){
+        if(registroUsuario.registroUsuario(nombre,password)){
             //true existe
             req.setAttribute("mensaje", " ¡¡El usuario ya existe!!");
         }

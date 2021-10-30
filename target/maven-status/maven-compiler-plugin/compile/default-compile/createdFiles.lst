@@ -2,6 +2,7 @@ Package\Controlador\FiguraControl.class
 Package\Service\RegistroUsuarioServicio.class
 Package\Modelo\Usuario.class
 Package\Util\MyProperties.class
+Package\Controlador\AccesoControl.class
 Package\Controlador\CrearFiguraControl.class
 Package\Controlador\RegistroUsuarioControl.class
 Package\DAO\FiguraDaoImplem.class
