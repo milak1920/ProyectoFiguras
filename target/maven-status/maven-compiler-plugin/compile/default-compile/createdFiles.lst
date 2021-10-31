@@ -7,6 +7,7 @@ Package\Controlador\CrearFiguraControl.class
 Package\Controlador\RegistroUsuarioControl.class
 Package\DAO\FiguraDaoImplem.class
 Package\DAO\UsuarioDao.class
+Package\Controlador\HistorialControl.class
 Package\DAO\DBConnection.class
 Package\Modelo\Figura.class
 Package\DAO\FiguraDao.class

@@ -1,7 +1,7 @@
 package Package.Controlador;
 
 
-import Package.DAO.DBConnection;
+
 import Package.DAO.FiguraDao;
 import Package.DAO.FiguraDaoImplem;
 
@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 
 @WebServlet(value = "/home")
@@ -53,6 +51,7 @@ public class CrearFiguraControl extends HttpServlet {
         Figura nuevo = new Figura();
         nuevo.setTipoFigura(tipoFigura);
         nuevo.setNombreFigura(nombreFigura);
+
         nuevo.setGrandor(Integer.parseInt(grandor));
         nuevo.setCoordX(Integer.parseInt(coordX));
         nuevo.setCoordY(Integer.parseInt(coordY));

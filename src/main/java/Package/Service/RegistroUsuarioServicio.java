@@ -27,7 +27,8 @@ public class RegistroUsuarioServicio {
 
        Usuario validarAcceso =  usuarioDao.buscarUsuario(nombre);
         if (validarAcceso == null) return false;
-       return password.equals(validarAcceso.getPassword());
+        if (password.equals(validarAcceso.getPassword())) return true;
+        return false;
    }
 
    public Integer buscarId(String nombre){

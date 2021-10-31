@@ -25,7 +25,8 @@ public class UsuarioDaoImplem implements UsuarioDao {
              try {
                  con.close();
              } catch (SQLException ex) {
-                 System.out.println("cerrado db");            }
+                 System.out.println("cerrado db");
+             }
          }
 
 

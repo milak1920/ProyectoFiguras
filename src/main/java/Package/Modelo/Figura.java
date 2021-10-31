@@ -2,12 +2,13 @@ package Package.Modelo;
 
 
 
-
+import java.sql.Timestamp;
 
 public class Figura {
     private Integer figuraId;
     private String tipoFigura;
     private String nombreFigura;
+    private Timestamp fechaCreacion;
     private Integer grandor;
     private Integer coordX;
     private Integer CoordY;
@@ -41,6 +42,14 @@ public class Figura {
 
     public void setNombreFigura(String nombreFigura) {
         this.nombreFigura = nombreFigura;
+    }
+
+    public Timestamp getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Timestamp fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Integer getGrandor() {
@@ -90,5 +99,8 @@ public class Figura {
     public void setUsuarioID(Integer usuarioID) {
         this.usuarioID = usuarioID;
     }
+
+
+
 }
 
