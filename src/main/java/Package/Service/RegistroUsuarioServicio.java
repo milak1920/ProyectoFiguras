@@ -21,7 +21,7 @@ public class RegistroUsuarioServicio {
             System.out.println(" no existe");
             return false;
         }
-    }
+   }
 
    public boolean usuarioAutorizado(String nombre, String password){
 

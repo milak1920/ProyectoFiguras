@@ -2,6 +2,8 @@ package Package.Controlador;
 import Package.DAO.FiguraDao;
 import Package.DAO.FiguraDaoImplem;
 import Package.Modelo.Figura;
+import Package.Service.RegistroFiguraServicio;
+import Package.Service.RegistroUsuarioServicio;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +19,7 @@ import java.util.List;
 @WebServlet(value = "/historialFigura")
 public class HistorialControl extends HttpServlet {
 
-
+    RegistroFiguraServicio registroFigura = new RegistroFiguraServicio();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,16 +31,13 @@ public class HistorialControl extends HttpServlet {
         List<Figura> mostrarFigurasUsuario = figuraDao.busquedaFiguraUsuario(id);
 
 
-        for (Figura e : mostrarFigurasUsuario)
-        {
-
-            System.out.println("nombre:  " + e.getFiguraId());
-
-        }
         req.setAttribute("listaFigura",mostrarFigurasUsuario);
 
-
+        //uso de service falta lo de arriba
         if(req.getParameter("idFigura") != null){
+            int idFigura = Integer.parseInt(req.getParameter("idFigura"));
+            registroFigura.eliminarFigura(idFigura);
+            System.out.println(idFigura);
             System.out.println("no es null");
         }
 

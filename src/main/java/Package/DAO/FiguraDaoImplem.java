@@ -1,6 +1,7 @@
 package Package.DAO;
 
 import Package.Modelo.Figura;
+import Package.Modelo.Usuario;
 
 import java.sql.*;
 
@@ -41,12 +42,6 @@ public class FiguraDaoImplem implements FiguraDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
-        }finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("cerrado db");
-            }
         }
     }
 
@@ -67,7 +62,7 @@ public class FiguraDaoImplem implements FiguraDao {
                 figura.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
                 figura.setGrandor(rs.getInt("grandor"));
                 figura.setCoordX(rs.getInt("coordX"));
-                figura.setCoordX(rs.getInt("coordY"));
+                figura.setCoordY(rs.getInt("coordY"));
                 figura.setColorFondo(rs.getString("colorFondo"));
                 figura.setColorBorde(rs.getString("colorBorde"));
                 figura.setUsuarioID(rs.getInt("usuario_id"));
@@ -85,6 +80,101 @@ public class FiguraDaoImplem implements FiguraDao {
             } catch (SQLException ex) {
                 System.out.println("cerrado db");
             }
+        }
+        return null;
+    }
+
+
+    @Override
+    public Boolean borrarFigura(int idFigura) {
+        PreparedStatement ps;
+        try {
+            String sql = "delete from figura where figura_id = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,idFigura);
+            ps.execute();
+            System.out.println("Borrado con exito!");
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+        }finally {
+            try {
+                System.out.println("cerrado db");
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println("error");
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public List<Figura> busquedaFiguraOtros(int usarioID) {
+        List<Figura> resultat = new ArrayList<>();
+        PreparedStatement ps;
+        try {
+            String sql = "select * from figura where usuario_id != ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,usarioID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Figura figura = new Figura();
+                figura.setFiguraId(rs.getInt("figura_id"));
+                figura.setTipoFigura(rs.getString("tipoFigura"));
+                figura.setNombreFigura(rs.getString("nombreFigura"));
+                figura.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                figura.setGrandor(rs.getInt("grandor"));
+                figura.setCoordX(rs.getInt("coordX"));
+                figura.setCoordY(rs.getInt("coordY"));
+                figura.setColorFondo(rs.getString("colorFondo"));
+                figura.setColorBorde(rs.getString("colorBorde"));
+                figura.setUsuarioID(rs.getInt("usuario_id"));
+                resultat.add(figura);
+            }
+            System.out.println("Data has been inserted!");
+            return resultat;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+        }finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println("cerrado db");
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Figura buscarNombreFigura(String nombreFigura) {
+        PreparedStatement ps;
+        try {
+            String sql = " select * from figura where nombreFigura = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1,nombreFigura);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Figura figura = new Figura();
+                figura.setFiguraId(rs.getInt("figura_id"));
+                figura.setTipoFigura(rs.getString("tipoFigura"));
+                figura.setNombreFigura(rs.getString("nombreFigura"));
+                figura.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                figura.setGrandor(rs.getInt("grandor"));
+                figura.setCoordX(rs.getInt("coordX"));
+                figura.setCoordY(rs.getInt("coordY"));
+                figura.setColorFondo(rs.getString("colorFondo"));
+                figura.setColorBorde(rs.getString("colorBorde"));
+                figura.setUsuarioID(rs.getInt("usuario_id"));
+                return figura;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
         }
         return null;
     }
