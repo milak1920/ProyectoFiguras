@@ -5,20 +5,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <title>Figuras</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<h1>Visualizar</h1>
-<h2>Nombre: ${nombreFigura}  <h2>
-<canvas width="1024" height="768" style="border:1px solid #000000;" id="canvas"></canvas>
+<header>
+<div class="p-5 text-white text-center" style="background-color:#33AD86;">
+  <h1>DIBUJA TUS FIGURAS</h1>
+</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/AccesoUsuarios">Iniciar sesión</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Crear Figura</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/historialFigura">Tu historial</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/historialOtros">Otras Figuras</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/registroUsuario">Registrate</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</header>
 
-    <p>${tipoFigura}</p>
-    <p>${grandor}</p>
-    <p>${coordX}</p>
-    <p>${coordY}</p>
-    <p>${colorFondo}</p>
-    <p>${colorBorde}</p>
-
-
+<main>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-sm-3">
+        <h3>Información configuración</h3>
+      	<div style="background-color:#33AD86; color:#fff;">
+       	   <ul class="list-group">
+  			<li class="list-group-item active" style="background-color:#33AD86; color:#fff;border:2px solid #33AD86;">${tipoFigura}</li>
+ 		    <li class="list-group-item">Tamaño: ${grandor} </li>
+  			<li class="list-group-item">Coordenada X: ${coordX}</li>
+  			<li class="list-group-item">Coordenada Y: ${coordY} </li>
+  			<li class="list-group-item">Color Fondo: ${colorFondo} </li>
+  			<li class="list-group-item">Color Borde: ${colorBorde}</li>
+			</ul>
+        </div>
+    </div>
+    <div class="col-sm-9">
+      <h2>Nombre: ${nombreFigura} </h2>
+      <h5>Fecha: ${fechaCreacion}</h5>
+      <canvas width="1024" height="768" style="border:2px solid #33AD86;" id="canvas"></canvas>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+	<div class=" p-4 bg-dark text-white text-center">
+ 	 <p>Copyright © 2020. All rights reserved. @milagrosKarimChoqueCondori</p>
+	</div>
+</footer>
  <script>
          const canvas = document.getElementById("canvas");
          var ctx = canvas.getContext("2d");

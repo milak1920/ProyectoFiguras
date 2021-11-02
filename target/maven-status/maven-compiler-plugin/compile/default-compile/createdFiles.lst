@@ -11,5 +11,6 @@ Package\DAO\UsuarioDao.class
 Package\Controlador\HistorialControl.class
 Package\DAO\DBConnection.class
 Package\Modelo\Figura.class
+Package\Controlador\historialOtros.class
 Package\DAO\FiguraDao.class
 Package\DAO\UsuarioDaoImplem.class

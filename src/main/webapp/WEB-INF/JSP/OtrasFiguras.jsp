@@ -40,7 +40,7 @@
 </header>
 <main>
 <div class="container mt-3">
-  <h2>Bienvenido a tu Historial ${nombre}!!</h2>
+  <h2>Otras Figuras!!</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -55,7 +55,6 @@
                 <td>  <c:out value="${figura.nombreFigura}" /></td>
                 <td> <c:out value="${figura.tipoFigura}" /></td>
                 <td> <c:out value="${figura.fechaCreacion}" /></td>
- 		        <td> <a href="/historialFigura?idFigura=<c:out value="${figura.figuraId}" />" class="btn btn-danger" role="button" aria-pressed="true">Borrar</a></td>
                 <td> <a href="/visualizarFigura?nombreFigura=<c:out value="${figura.nombreFigura}"/>&tipoFigura=<c:out value="${figura.tipoFigura}"/>&grandor=<c:out value="${figura.grandor}"/>&coordX=<c:out value="${figura.coordX}"/>&coordY=<c:out value="${figura.coordY}"/>&colorFondo=<c:out value="${figura.colorFondo}"/>&colorBorde=<c:out value="${figura.colorBorde}"/>&fechaCreacion=<c:out value="${figura.fechaCreacion}"/>" target="_blank" class="btn btn-primary" role="button" aria-pressed="true">Visualizar</a></td>
             </tr>
         </c:forEach>

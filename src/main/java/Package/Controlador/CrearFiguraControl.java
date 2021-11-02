@@ -83,30 +83,6 @@ public class CrearFiguraControl extends HttpServlet {
           }
 
 
-
-        /*
-        //prueba de quitar # de color y luego añadirlo en canvas
-
-        String nuevoColorFondo = colorFondo.replace("#", "");
-        String nuevoColorBorde = colorBorde.replace("#", "");
-
-        //fin
-
-        Figura nuevo = new Figura();
-        nuevo.setTipoFigura(tipoFigura);
-        nuevo.setNombreFigura(nombreFigura);
-
-        nuevo.setGrandor(Integer.parseInt(grandor));
-        nuevo.setCoordX(Integer.parseInt(coordX));
-        nuevo.setCoordY(Integer.parseInt(coordY));
-        nuevo.setColorFondo(nuevoColorFondo);
-        nuevo.setColorBorde(nuevoColorBorde);
-        nuevo.setUsuarioID((Integer) session.getAttribute("id"));
-
-
-        FiguraDao figuraDao = new FiguraDaoImplem();
-        figuraDao.insertar(nuevo); */
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/GuardarFigura.jsp");
         dispatcher.forward(req,resp);
     }

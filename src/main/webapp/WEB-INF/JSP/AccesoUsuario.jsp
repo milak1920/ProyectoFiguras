@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Figuras</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,23 +12,26 @@
 </head>
 <body>
 <header>
-<div class="p-5 bg-primary text-white text-center">
+<div class="p-5 text-white text-center" style="background-color:#33AD86;">
   <h1>DIBUJA TUS FIGURAS</h1>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Iniciar sesión</a>
+        <a class="nav-link active" href="/AccesoUsuarios">Iniciar sesión</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Crear Figura</a>
+        <a class="nav-link" href="/home">Crear Figura</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Tu historial</a>
+        <a class="nav-link" href="/historialFigura">Tu historial</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Otros Historiales</a>
+        <a class="nav-link" href="/historialOtros">Otras Figuras</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/registroUsuario">Registrate</a>
       </li>
     </ul>
   </div>
@@ -52,7 +55,7 @@
       								<input type="text" class="form-control" placeholder="Ingresa nombre" name="nombre">
       								<c:if test="${not empty message}">
                                         <div>
-                                           <div class="alert alert-danger" role="alert">
+                                           <div class="alert alert-danger mt-2" role="alert">
                                                ${message}
                                            </div>
                                         </div>
@@ -63,6 +66,7 @@
       								<input type="text" class="form-control" placeholder="Ingresa password" name="password">
     							</div>
     						<button type="submit" class="btn btn-primary">Iniciar</button>
+    						<a href="/registroUsuario" class="btn btn-dark" role="button" aria-pressed="true">Registrarse</a>
  						 </form>
   					</div>
      			 </div>

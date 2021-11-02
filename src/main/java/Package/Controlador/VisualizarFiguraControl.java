@@ -24,7 +24,7 @@ public class VisualizarFiguraControl extends HttpServlet {
         Integer coordY = Integer.valueOf(req.getParameter("coordY"));
         String colorFondo = req.getParameter("colorFondo");
         String colorBorde = req.getParameter("colorBorde");
-
+        String fechaCreacion = req.getParameter("fechaCreacion");
         String nuevoColorFondo = "#" + colorFondo;
         String nuevoColorBorde = "#" + colorBorde;
 
@@ -36,6 +36,7 @@ public class VisualizarFiguraControl extends HttpServlet {
         req.setAttribute("coordY", coordY);
         req.setAttribute("colorFondo", nuevoColorFondo);
         req.setAttribute("colorBorde", nuevoColorBorde);
+        req.setAttribute("fechaCreacion", fechaCreacion);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/VisualizarFigura.jsp");
         dispatcher.forward(req, resp);
     }

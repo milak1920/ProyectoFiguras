@@ -28,28 +28,10 @@ public class RegistroUsuarioControl extends HttpServlet {
 
         if(registroUsuario.registroUsuario(nombre,password)){
             //true existe
-            req.setAttribute("mensaje", " ¡¡El usuario ya existe!!");
-        }
-
-
-
-
-        /*
-        Usuario nuevo = new Usuario();
-        nuevo.setNombre(nombre);
-        nuevo.setPassword(password);
-        System.out.println(nuevo);
-        //mandar base de datos
-        UsuarioDao usuarioDao = new UsuarioDaoImplem();
-       // usuarioDao.agregar(nuevo);
-        Usuario validar =  usuarioDao.buscarUsuario(nombre);
-
-        if (validar != null){ //no existe
-            System.out.println("existe");
-            System.out.println(validar);
+            req.setAttribute("error", " ¡¡El usuario ya existe!!");
         }else {
-            System.out.println(" no existe");
-        }*/
+            req.setAttribute("crear", " ¡¡Se ha registrado correctamente!!");
+        }
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/RegistroUsuario.jsp");
         dispatcher.forward(req,resp);

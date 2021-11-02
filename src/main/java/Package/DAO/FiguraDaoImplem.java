@@ -1,7 +1,7 @@
 package Package.DAO;
 
 import Package.Modelo.Figura;
-import Package.Modelo.Usuario;
+
 
 import java.sql.*;
 
@@ -11,8 +11,8 @@ import java.util.List;
 
 
 public class FiguraDaoImplem implements FiguraDao {
-    DBConnection dataBase = new DBConnection();
-    Connection con = dataBase.getConnection();
+    //DBConnection dataBase = new DBConnection();
+    Connection con = DBConnection.getConnection();
 
     @Override
     public void insertar(Figura figura) {
@@ -74,12 +74,6 @@ public class FiguraDaoImplem implements FiguraDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
-        }finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("cerrado db");
-            }
         }
         return null;
     }
@@ -99,13 +93,6 @@ public class FiguraDaoImplem implements FiguraDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
-        }finally {
-            try {
-                System.out.println("cerrado db");
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("error");
-            }
         }
         return false;
     }
@@ -139,12 +126,6 @@ public class FiguraDaoImplem implements FiguraDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
-        }finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("cerrado db");
-            }
         }
         return null;
     }

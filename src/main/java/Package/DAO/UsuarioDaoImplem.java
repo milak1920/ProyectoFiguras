@@ -6,8 +6,8 @@ import java.sql.*;
 
 public class UsuarioDaoImplem implements UsuarioDao {
    // Connection con = DBConnection.connection();
-    DBConnection dataBase = new DBConnection();
-    Connection con = dataBase.getConnection();
+    //DBConnection dataBase = new DBConnection();
+    Connection con = DBConnection.getConnection();
     @Override
     public void agregar(Usuario usuario) {
         PreparedStatement ps;
@@ -21,16 +21,7 @@ public class UsuarioDaoImplem implements UsuarioDao {
          } catch (SQLException e) {
             e.printStackTrace();
              System.out.println(e.toString());
-        }finally {
-             try {
-                 con.close();
-             } catch (SQLException ex) {
-                 System.out.println("cerrado db");
-             }
-         }
-
-
-
+        }
     }
 
     @Override
@@ -49,15 +40,9 @@ public class UsuarioDaoImplem implements UsuarioDao {
                 return usuario;
              }
 
-
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
-        }finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("cerrado db");            }
         }
         return null;
 

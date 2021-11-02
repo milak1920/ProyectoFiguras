@@ -25,11 +25,14 @@ public class AccesoControl extends HttpServlet {
         String nombreUsuario = req.getParameter("nombre");
         String password = req.getParameter("password");
 
+
+
         if (registroUsuario.usuarioAutorizado(nombreUsuario, password)){
             HttpSession session = req.getSession();
             session.setAttribute("auth", true);
             session.setAttribute("nombreUsuario", nombreUsuario);
-            session.setAttribute("id", 1);
+            Integer idUsuario = registroUsuario.buscarId(nombreUsuario);
+            session.setAttribute("id", idUsuario);
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/GuardarFigura.jsp");
             dispatcher.forward(req, resp);
