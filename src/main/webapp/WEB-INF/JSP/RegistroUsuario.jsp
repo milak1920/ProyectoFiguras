@@ -59,7 +59,7 @@
       							<label for="pwd">Password:</label>
       								<input type="text" class="form-control" placeholder="Ingresa password" name="password">
     							</div>
-    						<button type="submit" class="btn btn-primary">Enviar</button>
+    						<button type="submit" class="btn btn-primary">Crear</button>
                             <a href="/AccesoUsuarios" class="btn btn-dark" role="button" aria-pressed="true">Iniciar Sesión</a>
  						 </form>
  						 <c:if test="${not empty error}">
@@ -82,7 +82,6 @@
              </div>
 		</div>
 	</section>
-</main>
 </main>
 <footer>
 	<div class=" p-4 bg-dark text-white text-center">

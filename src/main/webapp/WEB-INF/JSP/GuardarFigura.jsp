@@ -49,7 +49,7 @@
                     <option value="circulo">Circulo</option>
                     <option value="cuadrado">Cuadrado</option>
                     <option value="triangulo">Triangulo</option>
-                    <option value="pentagono">Pentagon</option>
+                    <option value="pentagono">Pentagono</option>
                     <option value="estrella">Estrella</option>
                 </select>
                 <div class="mb-3">
@@ -180,6 +180,8 @@ function validate() {
 
 
  const circulo = function (colorBorde, colorFondo,coordX,coordY, grandor){
+      ctx.save();
+     ctx.beginPath();
      var X = coordX/2;
      var Y = coordY/2;
      var r = grandor;
@@ -189,31 +191,44 @@ function validate() {
      ctx.arc(X,Y,r,0,2*Math.PI);
      ctx.fill();
      ctx.stroke();
+     ctx.closePath();
+     ctx.restore();
  };
  const cuadrado = function(colorBorde, colorFondo,coordX,coordY,grandor){
+  ctx.save();
+     ctx.beginPath();
      ctx.lineWidth = 5;
      ctx.strokeStyle = colorBorde;
      ctx.fillStyle = colorFondo;
      ctx.rect(coordX, coordY, grandor, grandor);
-     ctx.stroke();
      ctx.fill();
+     ctx.stroke();
+     ctx.closePath();
+     ctx.restore();
  }
-const triangulo = function(colorBorde,colorFondo,coordX,coordY,grandor){
-    let sWidth = coordX;
-    let sHeight = coordY;
-    ctx.beginPath();
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = colorBorde;
-    ctx.fillStyle = colorFondo;
-    ctx.moveTo((sWidth/2)+grandor,sHeight/2);
-    ctx.lineTo((sWidth/2),(sHeight/2)-grandor);
-    ctx.lineTo((sWidth/2)-grandor,sHeight/2);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-}
+
+     const triangulo = function(colorBorde,colorFondo,coordX,coordY,grandor){
+      ctx.save();
+         ctx.beginPath();
+         let A = grandor * Math.cos(Math.PI / 6);
+         ctx.beginPath();
+         ctx.moveTo(coordX-A, coordY);
+         ctx.lineTo(coordX+A, coordY);
+         ctx.lineTo(coordX, coordY - A);
+         ctx.lineTo(coordX-A, coordY);
+         ctx.closePath();
+         ctx.lineWidth = 5;
+         ctx.strokeStyle = colorBorde;
+         ctx.stroke();
+         ctx.fillStyle = colorFondo;
+         ctx.fill();
+
+     ctx.closePath();
+     ctx.restore();
+     }
 
 function pentagono(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
+     ctx.save();
     ctx.beginPath();
     ctx.strokeStyle = colorBorde;
     ctx.fillStyle = colorFondo;
@@ -228,6 +243,7 @@ function pentagono(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
      ctx.fill();
      ctx.stroke();
      ctx.closePath();
+       ctx.restore();
 }
 
 function estrella(context,n,grandor,R,x,y,lwid,colorBorde,colorFondo) {

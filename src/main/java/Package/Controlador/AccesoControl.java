@@ -29,7 +29,7 @@ public class AccesoControl extends HttpServlet {
 
         if (registroUsuario.usuarioAutorizado(nombreUsuario, password)){
             HttpSession session = req.getSession();
-            session.setAttribute("auth", true);
+            //session.setAttribute("auth", true);
             session.setAttribute("nombreUsuario", nombreUsuario);
             Integer idUsuario = registroUsuario.buscarId(nombreUsuario);
             session.setAttribute("id", idUsuario);
