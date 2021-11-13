@@ -26,6 +26,7 @@ public class AccesoControl extends HttpServlet {
         String password = req.getParameter("password");
 
 
+        /*
         if(nombreUsuario.equals("mila") && password.equals("123")){
             System.out.println(nombreUsuario + " " + password + "filtro");
             HttpSession session = req.getSession();
@@ -34,23 +35,22 @@ public class AccesoControl extends HttpServlet {
             dispatcher.forward(req, resp);
             return;
 
-        }
+        }*/
 
-        /*
+
         if (registroUsuario.usuarioAutorizado(nombreUsuario, password)){
             HttpSession session = req.getSession();
             session.setAttribute("auth", true);
             session.setAttribute("nombreUsuario", nombreUsuario);
             Integer idUsuario = registroUsuario.buscarId(nombreUsuario);
             session.setAttribute("id", idUsuario);
-
             RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/GuardarFigura.jsp");
             dispatcher.forward(req, resp);
             return;
         }
         req.setAttribute("message", "Usuario no valido!!");
 
-        */
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/AccesoUsuario.jsp");
         dispatcher.forward(req, resp);
     }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
 
-@WebServlet(value = "/visualizarFigura")
+@WebServlet(value = "/inside/visualizarFigura")
 public class VisualizarFiguraControl extends HttpServlet {
 
 

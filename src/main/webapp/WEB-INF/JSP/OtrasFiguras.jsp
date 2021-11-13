@@ -23,13 +23,13 @@
         <a class="nav-link active" href="/AccesoUsuarios">Iniciar sesión</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/home">Crear Figura</a>
+        <a class="nav-link" href="/inside/home">Crear Figura</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/historialFigura">Tu historial</a>
+        <a class="nav-link" href="/inside/historialFigura">Tu historial</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/historialOtros">Otras Figuras</a>
+        <a class="nav-link" href="/inside/historialOtros">Otras Figuras</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/registroUsuario">Registrate</a>

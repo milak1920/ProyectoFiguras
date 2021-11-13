@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/historialOtros")
+@WebServlet(value = "/inside/historialOtros")
 public class historialOtros extends HttpServlet {
     RegistroFiguraServicio registroFigura = new RegistroFiguraServicio();
 

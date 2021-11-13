@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(value = "/home")
+@WebServlet(value = "/inside/home")
 public class CrearFiguraControl extends HttpServlet {
     RegistroFiguraServicio registroFigura = new RegistroFiguraServicio();
 

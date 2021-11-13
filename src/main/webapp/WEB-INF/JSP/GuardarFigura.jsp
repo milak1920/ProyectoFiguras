@@ -23,13 +23,13 @@
         <a class="nav-link active" href="/AccesoUsuarios">Iniciar sesión</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/home">Crear Figura</a>
+        <a class="nav-link" href="/inside/home">Crear Figura</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/historialFigura">Tu historial</a>
+        <a class="nav-link" href="/inside/historialFigura">Tu historial</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/historialOtros">Otras Figuras</a>
+        <a class="nav-link" href="/inside/historialOtros">Otras Figuras</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/registroUsuario">Registrate</a>
@@ -43,7 +43,7 @@
     <div class="row">
        <div class="col-sm-3" style="background-color:#33AD86; color:#fff;">
     	    <h2 style="color:#fff;" class="text-center">Formulario</h2>
-            <form action="/home" method="post" id="form">
+            <form action="/inside/home" method="post" id="form">
              <label>Tipo de figura:</label>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tipoFigura" id="tipoFigura">
                     <option value="circulo">Circulo</option>

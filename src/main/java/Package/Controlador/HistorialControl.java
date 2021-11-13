@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(value = "/historialFigura")
+@WebServlet(value = "/inside/historialFigura")
 public class HistorialControl extends HttpServlet {
 
     RegistroFiguraServicio registroFigura = new RegistroFiguraServicio();
