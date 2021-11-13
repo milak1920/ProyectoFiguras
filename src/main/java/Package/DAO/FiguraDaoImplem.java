@@ -11,13 +11,17 @@ import java.util.List;
 
 
 public class FiguraDaoImplem implements FiguraDao {
-
+    //DBConnection dataBase = new DBConnection();
     Connection con = DBConnection.getConnection();
 
     @Override
     public void insertar(Figura figura) {
         PreparedStatement ps;
         Timestamp ts = Timestamp.from(Instant.now());
+       // SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        System.out.println("nuevo formato");
+        System.out.println(ts);
+        System.out.println("fin");
 
         try {
             String sql = "INSERT INTO figura(tipoFigura,nombreFigura,fechaCreacion,grandor,coordX, coordY,colorFondo, colorBorde,usuario_id) VALUES(?,?,?,?,?,?,?,?,?)";

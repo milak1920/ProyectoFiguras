@@ -5,6 +5,8 @@ import Package.Modelo.Usuario;
 import java.sql.*;
 
 public class UsuarioDaoImplem implements UsuarioDao {
+   // Connection con = DBConnection.connection();
+    //DBConnection dataBase = new DBConnection();
     Connection con = DBConnection.getConnection();
     @Override
     public void agregar(Usuario usuario) {

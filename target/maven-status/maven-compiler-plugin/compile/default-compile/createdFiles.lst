@@ -2,6 +2,7 @@ Package\Service\RegistroUsuarioServicio.class
 Package\Modelo\Usuario.class
 Package\Service\RegistroFiguraServicio.class
 Package\Util\MyProperties.class
+Package\Controlador\PrivateServlet.class
 Package\Controlador\AccesoControl.class
 Package\Controlador\CrearFiguraControl.class
 Package\Controlador\RegistroUsuarioControl.class
@@ -10,6 +11,7 @@ Package\Controlador\VisualizarFiguraControl.class
 Package\DAO\UsuarioDao.class
 Package\Controlador\HistorialControl.class
 Package\DAO\DBConnection.class
+Package\Filtro\AuthFilter.class
 Package\Modelo\Figura.class
 Package\Controlador\historialOtros.class
 Package\DAO\FiguraDao.class
