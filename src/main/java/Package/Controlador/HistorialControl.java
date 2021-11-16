@@ -1,6 +1,5 @@
 package Package.Controlador;
-import Package.DAO.FiguraDao;
-import Package.DAO.FiguraDaoImplem;
+
 import Package.Modelo.Figura;
 import Package.Service.RegistroFiguraServicio;
 
@@ -23,21 +22,18 @@ public class HistorialControl extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //En el controlador no debe esta el DAO esto se debe de implementar en Servicio
+        //obtener nombre y id por session
         HttpSession session = req.getSession();
         int id = (int) session.getAttribute("id");
         String nombre = (String) session.getAttribute("nombreUsuario");
 
-        FiguraDao figuraDao = new FiguraDaoImplem();
-        List<Figura> mostrarFigurasUsuario = figuraDao.busquedaFiguraUsuario(id);
 
-
+        //Visualizar lista de usuario unico
+        List<Figura> mostrarFigurasUsuario = registroFigura.buscarFiguraUsuario(id);
         req.setAttribute("listaFigura",mostrarFigurasUsuario);
         req.setAttribute("nombre",nombre);
 
-        if(req.getParameter("idFigura") != null){
-            int idFigura = Integer.parseInt(req.getParameter("idFigura"));
-            registroFigura.eliminarFigura(idFigura);
-        }
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/HistorialFigura.jsp");
         dispatcher.forward(req, resp);
@@ -45,6 +41,24 @@ public class HistorialControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("click borrar");
+        //no he probado que funcione y implementar el token mañana revisar
+        String idFiguraBorrar = req.getParameter("figuraBorrar");
+        System.out.println(idFiguraBorrar);
+
+
+        //borrar del historial
+        if(idFiguraBorrar != null){
+            int idFigura = Integer.parseInt(idFiguraBorrar);
+           registroFigura.eliminarFigura(idFigura);
+        }
+        System.out.println("ahora visualizar denuevo historial");
+        HttpSession session = req.getSession();
+        int id = (int) session.getAttribute("id");
+        List<Figura> mostrarFigurasUsuario = registroFigura.buscarFiguraUsuario(id);
+        req.setAttribute("listaFigura",mostrarFigurasUsuario);
+
+        //recargar pagina
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/HistorialFigura.jsp");
         dispatcher.forward(req, resp);

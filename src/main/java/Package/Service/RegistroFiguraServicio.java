@@ -5,6 +5,8 @@ import Package.DAO.FiguraDaoImplem;
 import Package.Modelo.Figura;
 import Package.Modelo.Usuario;
 
+import java.util.List;
+
 public class RegistroFiguraServicio {
 
     FiguraDao figuraDao = new FiguraDaoImplem();
@@ -32,6 +34,19 @@ public class RegistroFiguraServicio {
         figuraDao.insertar(nuevo);
         return true;
     }
+
+    public List<Figura> buscarFiguraUsuario(int id){
+        List<Figura> mostrarFigurasUsuario = figuraDao.busquedaFiguraUsuario(id);
+        return mostrarFigurasUsuario;
+    }
+
+    public List<Figura> obtenerFiguraUnicaVer(int id){
+        List<Figura> verFigurasUsuario = figuraDao.mostrarFiguraUsuario(id);
+        return verFigurasUsuario;
+    }
+
+
+
 
 
 

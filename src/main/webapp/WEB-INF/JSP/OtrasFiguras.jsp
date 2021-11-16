@@ -55,7 +55,11 @@
                 <td>  <c:out value="${figura.nombreFigura}" /></td>
                 <td> <c:out value="${figura.tipoFigura}" /></td>
                 <td> <c:out value="${figura.fechaCreacion}" /></td>
-                <td> <a href="/visualizarFigura?nombreFigura=<c:out value="${figura.nombreFigura}"/>&tipoFigura=<c:out value="${figura.tipoFigura}"/>&grandor=<c:out value="${figura.grandor}"/>&coordX=<c:out value="${figura.coordX}"/>&coordY=<c:out value="${figura.coordY}"/>&colorFondo=<c:out value="${figura.colorFondo}"/>&colorBorde=<c:out value="${figura.colorBorde}"/>&fechaCreacion=<c:out value="${figura.fechaCreacion}"/>" target="_blank" class="btn btn-primary" role="button" aria-pressed="true">Visualizar</a></td>
+                <td>
+                    <form action="/inside/visualizarFigura" method="post">
+                        <button type="submit" class="btn btn-primary" value="${figura.figuraId}" name="figuraVer">Visualizar</button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </tbody>

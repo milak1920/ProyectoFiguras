@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class FiguraDaoImplem implements FiguraDao {
-    //DBConnection dataBase = new DBConnection();
+
     Connection con = DBConnection.getConnection();
 
     @Override
@@ -38,7 +38,7 @@ public class FiguraDaoImplem implements FiguraDao {
             ps.setString(8,figura.getColorBorde());
             ps.setInt(9,figura.getUsuarioID());
             ps.execute();
-            System.out.println("Data has been inserted!");
+            System.out.println("figura insertada ok!");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.toString());
@@ -68,7 +68,7 @@ public class FiguraDaoImplem implements FiguraDao {
                 figura.setUsuarioID(rs.getInt("usuario_id"));
                 resultat.add(figura);
             }
-            System.out.println("Data has been inserted!");
+            System.out.println("busqueda figuras usuario ok!");
             return resultat;
 
         } catch (SQLException e) {
@@ -120,7 +120,7 @@ public class FiguraDaoImplem implements FiguraDao {
                 figura.setUsuarioID(rs.getInt("usuario_id"));
                 resultat.add(figura);
             }
-            System.out.println("Data has been inserted!");
+            System.out.println("busqueda figura otros !");
             return resultat;
 
         } catch (SQLException e) {
@@ -151,7 +151,41 @@ public class FiguraDaoImplem implements FiguraDao {
                 figura.setColorBorde(rs.getString("colorBorde"));
                 figura.setUsuarioID(rs.getInt("usuario_id"));
                 return figura;
+            }  System.out.println("busqueda figuras nombre figura ok!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Figura> mostrarFiguraUsuario(int idFigura) {
+
+        List<Figura> resultat = new ArrayList<>();
+        PreparedStatement ps;
+        try {
+            String sql = "select * from figura where figura_id = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,idFigura);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Figura figura = new Figura();
+                figura.setFiguraId(rs.getInt("figura_id"));
+                figura.setTipoFigura(rs.getString("tipoFigura"));
+                figura.setNombreFigura(rs.getString("nombreFigura"));
+                figura.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                figura.setGrandor(rs.getInt("grandor"));
+                figura.setCoordX(rs.getInt("coordX"));
+                figura.setCoordY(rs.getInt("coordY"));
+                figura.setColorFondo(rs.getString("colorFondo"));
+                figura.setColorBorde(rs.getString("colorBorde"));
+                figura.setUsuarioID(rs.getInt("usuario_id"));
+                resultat.add(figura);
             }
+            System.out.println("obtener figura id!");
+            return resultat;
 
         } catch (SQLException e) {
             e.printStackTrace();

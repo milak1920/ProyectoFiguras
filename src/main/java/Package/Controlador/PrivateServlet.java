@@ -1,5 +1,6 @@
 package Package.Controlador;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,17 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
 
-@WebServlet(value = "/inside/private")
+@WebServlet(value = "/privateError")
 public class PrivateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Writer w = resp.getWriter();
-        w.write("Part privada de la web. Benvingut: ");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/errorFiltro.jsp");
+        dispatcher.forward(req, resp);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/errorFiltro.jsp");
+        dispatcher.forward(req, resp);
     }
 }

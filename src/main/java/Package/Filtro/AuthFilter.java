@@ -18,9 +18,9 @@ public class AuthFilter extends HttpFilter {
         if (session.getAttribute("auth") != null){
             System.out.println("dentro del filtro");
             chain.doFilter(req,res);
-            return;
+
         }else {
-             res.sendRedirect("/AccesoUsuarios");
+             res.sendRedirect("/privateError");
         }
         //res.sendError(401, "No autoritzat");
     }
