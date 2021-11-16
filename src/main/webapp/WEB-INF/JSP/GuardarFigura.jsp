@@ -109,7 +109,7 @@
      			    <input class="form-control" type="color" name="colorBorde" id="colorBorde">
                 </div>
                 <input type="submit" value="guardar" class="btn btn-primary">
-                <input class="btn btn-light" type="button" value="Verificar" onclick="validate()"/>
+                <input class="btn btn-light" type="button" value="Verificar"   id="ver" onclick="pintar()"/>
              </form>
             <c:if test="${not empty mensaje}">
                 <div>
@@ -118,10 +118,6 @@
                     </div>
                 </div>
             </c:if>
-            <form action="/home" method="get">
-                 <input class="btn btn-dark" type="submit" value="borrar" name="borrar">
-            </form>
-
   	   </div>
        <div class="col-sm-9">
          <h2>Lienzo</h2>
@@ -141,43 +137,10 @@
 
 <script>
 
- let borrar = '${limpiar}';
- if (borrar === ""){
-    console.log("borrar");
- }
-
-function validate() {
-   const canvas = document.getElementById("canvas");
-   var ctx = canvas.getContext("2d");
-   let tipoFigura = document.getElementById("tipoFigura").value;
-   let nombreFigura = document.getElementById("nombreFigura").value;
-   let grandor = document.getElementById("grandor").value;
-   let coordX = document.getElementById("coordX").value;
-   let coordY = document.getElementById("coordY").value;
-   let colorFondo = document.getElementById("colorFondo").value;
-   let colorBorde = document.getElementById("colorBorde").value;
 
 
-   if (nombreFigura === ""){
-         document.getElementById('nombreFigura-error').className = 'alert alert-primary mt-2';
-         document.getElementById("nombreFigura-error").innerHTML = "** Se genera un nombre aleatorio";
-   }
-   valorGrandor = parseInt(grandor)
-   if (grandor === "" || isNaN(valorGrandor)){
-        document.getElementById('grandor-error').className = 'alert alert-danger mt-2';
-        document.getElementById("grandor-error").innerHTML = "** El valor esta vacio o no es númerico";
-   }
-   valorcoordX = parseInt(coordX)
-   if (coordX === "" || isNaN(valorcoordX)){
-        document.getElementById('coordX-error').className = 'alert alert-danger mt-2';
-        document.getElementById("coordX-error").innerHTML = "** El valor esta vacio o no es númerico";
-   }
-   valorcoordY = parseInt(coordY)
-   if (coordY === "" || isNaN(valorcoordY)){
-        document.getElementById('coordY-error').className = 'alert alert-danger mt-2';
-        document.getElementById("coordY-error").innerHTML = "** El valor esta vacio o no es númerico";
-   }
-
+ const canvas = document.getElementById("canvas");
+ var ctx = canvas.getContext("2d");
 
  const circulo = function (colorBorde, colorFondo,coordX,coordY, grandor){
      var X = coordX/2;
@@ -197,7 +160,7 @@ function validate() {
      ctx.rect(coordX, coordY, grandor, grandor);
      ctx.stroke();
      ctx.fill();
- }
+ };
 const triangulo = function(colorBorde,colorFondo,coordX,coordY,grandor){
     let sWidth = coordX;
     let sHeight = coordY;
@@ -211,9 +174,9 @@ const triangulo = function(colorBorde,colorFondo,coordX,coordY,grandor){
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
-}
+};
 
-function pentagono(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
+const pentagono = function(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
     ctx.beginPath();
     ctx.strokeStyle = colorBorde;
     ctx.fillStyle = colorFondo;
@@ -228,9 +191,9 @@ function pentagono(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
      ctx.fill();
      ctx.stroke();
      ctx.closePath();
-}
+};
 
-function estrella(context,n,grandor,R,x,y,lwid,colorBorde,colorFondo) {
+const estrella = function(context,n,grandor,R,x,y,lwid,colorBorde,colorFondo) {
     ctx.save();
     ctx.lineWidth=lwid;
     ctx.beginPath();
@@ -243,36 +206,76 @@ function estrella(context,n,grandor,R,x,y,lwid,colorBorde,colorFondo) {
         ctx.lineTo(Math.cos(((3/4 + i)*2*Math.PI/n))*grandor,-Math.sin(((3/4 + i)*2*Math.PI/n))*grandor);
     }
     ctx.fill();
-         ctx.stroke();
-ctx.closePath();
-ctx.stroke();
-ctx.restore();
-}
-
-  switch(tipoFigura) {
-     case "circulo":
-          circulo(colorBorde, colorFondo,coordX,coordY,grandor);
-       break;
-     case "cuadrado":
-         cuadrado(colorBorde, colorFondo,coordX,coordY,grandor);
-       break;
-     case "triangulo":
-         triangulo(colorBorde,colorFondo,coordX,coordY,grandor);
-         break;
-     case "pentagono":
-         pentagono(coordX,coordY,grandor,-Math.PI / 2,colorBorde,colorFondo);
-         break;
-     case "estrella":
-         estrella(ctx,7,grandor,grandor / 2,coordX,coordY,10,colorBorde,colorFondo);
-         break;
-     default:
-         console.log("no has seleccionado nada");
-   }
+    ctx.stroke();
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+};
 
 
 
-}
+let prueba = true;
+ function pintar(){
+     if(prueba){
 
+        let tipoFigura = document.getElementById("tipoFigura").value;
+        let nombreFigura = document.getElementById("nombreFigura").value;
+        let grandor = document.getElementById("grandor").value;
+        let coordX = document.getElementById("coordX").value;
+        let coordY = document.getElementById("coordY").value;
+        let colorFondo = document.getElementById("colorFondo").value;
+        let colorBorde = document.getElementById("colorBorde").value;
+
+        if (nombreFigura === ""){
+              document.getElementById('nombreFigura-error').className = 'alert alert-primary mt-2';
+              document.getElementById("nombreFigura-error").innerHTML = "** Se genera un nombre aleatorio";
+        }
+        valorGrandor = parseInt(grandor)
+        if (grandor === "" || isNaN(valorGrandor)){
+             document.getElementById('grandor-error').className = 'alert alert-danger mt-2';
+             document.getElementById("grandor-error").innerHTML = "** El valor esta vacio o no es númerico";
+        }
+        valorcoordX = parseInt(coordX)
+        if (coordX === "" || isNaN(valorcoordX)){
+             document.getElementById('coordX-error').className = 'alert alert-danger mt-2';
+             document.getElementById("coordX-error").innerHTML = "** El valor esta vacio o no es númerico";
+        }
+        valorcoordY = parseInt(coordY)
+        if (coordY === "" || isNaN(valorcoordY)){
+             document.getElementById('coordY-error').className = 'alert alert-danger mt-2';
+             document.getElementById("coordY-error").innerHTML = "** El valor esta vacio o no es númerico";
+        }
+
+      switch(tipoFigura) {
+          case "circulo":
+               circulo(colorBorde, colorFondo,coordX,coordY,grandor);
+            break;
+          case "cuadrado":
+              cuadrado(colorBorde, colorFondo,coordX,coordY,grandor);
+            break;
+          case "triangulo":
+              triangulo(colorBorde,colorFondo,coordX,coordY,grandor);
+              break;
+          case "pentagono":
+              pentagono(coordX,coordY,grandor,-Math.PI / 2,colorBorde,colorFondo);
+              break;
+          case "estrella":
+              estrella(ctx,7,grandor,grandor / 2,coordX,coordY,10,colorBorde,colorFondo);
+              break;
+          default:
+              console.log("no has seleccionado nada");
+        }
+
+         console.log("pintar");
+         document.getElementById("ver").value="Borrar";
+         prueba=false;
+     }else{
+         ctx.clearRect(0, 0, canvas.width, canvas.height);
+         console.log("borrar");
+         document.getElementById("ver").value="Visualizar";
+         prueba=true;
+     }
+  };
 </script>
 </body>
 </html>
