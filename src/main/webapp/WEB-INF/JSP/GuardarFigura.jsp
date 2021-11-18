@@ -45,11 +45,13 @@
     	    <h2 style="color:#fff;" class="text-center">Formulario</h2>
             <form action="/inside/home" method="post" id="form">
              <label>Tipo de figura:</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tipoFigura" id="tipoFigura" value="${pintarFigura.tipoFigura}">                    <option value="circulo">Circulo</option>
-                    <option value="cuadrado">Cuadrado</option>
-                    <option value="triangulo">Triangulo</option>
-                    <option value="pentagono">Pentagon</option>
-                    <option value="estrella">Estrella</option>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tipoFigura" id="tipoFigura">
+
+                    <option value="circulo" <c:if test="${pintarFigura.tipoFigura == 'circulo'}">selected="selected"</c:if>>Circulo</option>
+                    <option value="cuadrado" <c:if test="${pintarFigura.tipoFigura == 'cuadrado'}">selected="selected"</c:if>>Cuadrado</option>
+                    <option value="triangulo" <c:if test="${pintarFigura.tipoFigura == 'triangulo'}">selected="selected"</c:if>>Triangulo</option>
+                    <option value="pentagono" <c:if test="${pintarFigura.tipoFigura == 'pentagono'}">selected="selected"</c:if>>Pentagon</option>
+                    <option value="estrella" <c:if test="${pintarFigura.tipoFigura == 'estrella'}">selected="selected"</c:if>>Estrella</option>
                 </select>
                 <div class="mb-3">
      			    <label>Nombre Figura:</label>
@@ -141,12 +143,11 @@
 
         let nombreFigura = "${pintarFigura.nombreFigura}";
         let tipoFigura = "${pintarFigura.tipoFigura}";
-        let grandor = "${pintarFigura.grandor}";
-        let coordX = "${pintarFigura.coordX}";
-        let coordY = "${pintarFigura.coordY}";
+        let grandor = Number("${pintarFigura.grandor}");
+        let coordX = Number("${pintarFigura.coordX}");
+        let coordY = Number("${pintarFigura.coordY}");
         let colorFondo = "${pintarFigura.colorFondo}"
         let colorBorde = "${pintarFigura.colorBorde}";
-
 
 
 
@@ -158,7 +159,7 @@
                cuadrado(colorBorde, colorFondo,coordX,coordX,grandor);
                break;
           case "triangulo":
-              drawTriangle(coordX, coordX, grandor, colorFondo);
+               triangulo(colorBorde,colorFondo,coordX,coordY,grandor);
               break;
           case "pentagono":
               pentagono(coordX,coordY,grandor,-Math.PI / 2,colorBorde,colorFondo);

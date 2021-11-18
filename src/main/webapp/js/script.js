@@ -19,15 +19,7 @@
  };
 
 
-function drawTriangle(cx, cy, size, color){
-    let c = Math.sqrt(Math.pow(size, 2) - Math.pow(size/2, 2));
-    ctx.beginPath();
-    ctx.moveTo(cx,cy - (c/2));
-    ctx.lineTo(cx + (size/2),cy - (c/2) + c);
-    ctx.lineTo(cx + (size/2) -size, cy - (c/2) + c);
-    ctx.fillStyle = color;
-    ctx.fill();
-}
+
 
 const pentagono = function(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
     ctx.beginPath();
@@ -65,3 +57,19 @@ const estrella = function(context,n,grandor,R,x,y,lwid,colorBorde,colorFondo) {
     ctx.restore();
 };
 
+
+
+const triangulo = function(colorBorde,colorFondo,coordX,coordY,grandor){
+    let sWidth = coordX;
+    let sHeight = coordY;
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = colorBorde;
+    ctx.fillStyle = colorFondo;
+    ctx.moveTo((sWidth/2)+grandor,sHeight/2);
+    ctx.lineTo((sWidth/2),(sHeight/2)-grandor);
+    ctx.lineTo((sWidth/2)-grandor,sHeight/2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+};
