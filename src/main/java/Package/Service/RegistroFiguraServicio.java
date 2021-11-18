@@ -12,6 +12,7 @@ public class RegistroFiguraServicio {
     FiguraDao figuraDao = new FiguraDaoImplem();
 
     public boolean eliminarFigura(int idfigura){
+        System.out.println("dentro de elimianr servicie");
         FiguraDao figuraDao = new FiguraDaoImplem();
         figuraDao.borrarFigura(idfigura);
         return true;

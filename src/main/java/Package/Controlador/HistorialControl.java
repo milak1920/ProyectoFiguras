@@ -41,28 +41,32 @@ public class HistorialControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         int id = (int) session.getAttribute("id");
 
-        System.out.println("click borrar");
-        //no he probado que funcione y implementar el token mañana revisar
+
         String idFiguraBorrar = req.getParameter("figuraBorrar");
-        String idusuarioFigura = req.getParameter("usuarioID");
 
-        System.out.println("id de usuario figura borrar" + idusuarioFigura);
+        //session id
+        String idSessionUsuario = String.valueOf(session.getAttribute("id"));
+        String idUsuarioServer = req.getParameter("usuarioID");
+         //fin
 
-        System.out.println("id de usuario figura 2 sesion" + session.getAttribute("id"));
         //borrar del historial
-        if(idFiguraBorrar != null && idusuarioFigura.equals(session.getAttribute("id"))){
+        if(idFiguraBorrar != null && idSessionUsuario.equals(idUsuarioServer)){
+            System.out.println("se borro correctamente con id de usuario " + idUsuarioServer + "session id " + idSessionUsuario);
             int idFigura = Integer.parseInt(idFiguraBorrar);
            registroFigura.eliminarFigura(idFigura);
         }
-        System.out.println("ahora visualizar denuevo historial");
+        System.out.println("ahora visualizar denuevo historial ok");
 
         List<Figura> mostrarFigurasUsuario = registroFigura.buscarFiguraUsuario(id);
         req.setAttribute("listaFigura",mostrarFigurasUsuario);
 
-        //recargar pagina
+
+
+
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/HistorialFigura.jsp");
         dispatcher.forward(req, resp);
