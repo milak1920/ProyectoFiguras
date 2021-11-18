@@ -26,18 +26,6 @@ public class AccesoControl extends HttpServlet {
         String password = req.getParameter("password");
 
 
-        /*
-        if(nombreUsuario.equals("mila") && password.equals("123")){
-            System.out.println(nombreUsuario + " " + password + "filtro");
-            HttpSession session = req.getSession();
-            session.setAttribute("auth", true);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/loginOk.jsp");
-            dispatcher.forward(req, resp);
-            return;
-
-        }*/
-
-
         if (registroUsuario.usuarioAutorizado(nombreUsuario, password)){
             HttpSession session = req.getSession();
             session.setAttribute("auth", true);

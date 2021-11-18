@@ -58,7 +58,7 @@
  		        <td>
  		            <form action="/inside/historialFigura" method="post">
  		                <button type="submit" class="btn btn-danger" value="${figura.figuraId}" name="figuraBorrar" >Borrar</button>
-
+                        <input type="hidden" name="usuarioID" value="${figura.usuarioID}">
  		            </form>
  		        </td>
                 <td>

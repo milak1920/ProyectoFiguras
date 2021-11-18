@@ -41,20 +41,24 @@ public class HistorialControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        int id = (int) session.getAttribute("id");
+
         System.out.println("click borrar");
         //no he probado que funcione y implementar el token mañana revisar
         String idFiguraBorrar = req.getParameter("figuraBorrar");
-        System.out.println(idFiguraBorrar);
+        String idusuarioFigura = req.getParameter("usuarioID");
 
+        System.out.println("id de usuario figura borrar" + idusuarioFigura);
 
+        System.out.println("id de usuario figura 2 sesion" + session.getAttribute("id"));
         //borrar del historial
-        if(idFiguraBorrar != null){
+        if(idFiguraBorrar != null && idusuarioFigura.equals(session.getAttribute("id"))){
             int idFigura = Integer.parseInt(idFiguraBorrar);
            registroFigura.eliminarFigura(idFigura);
         }
         System.out.println("ahora visualizar denuevo historial");
-        HttpSession session = req.getSession();
-        int id = (int) session.getAttribute("id");
+
         List<Figura> mostrarFigurasUsuario = registroFigura.buscarFiguraUsuario(id);
         req.setAttribute("listaFigura",mostrarFigurasUsuario);
 

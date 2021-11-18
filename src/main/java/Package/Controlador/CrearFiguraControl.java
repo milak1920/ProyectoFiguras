@@ -4,6 +4,7 @@ package Package.Controlador;
 
 
 
+import Package.Modelo.Figura;
 import Package.Service.RegistroFiguraServicio;
 
 
@@ -25,6 +26,25 @@ public class CrearFiguraControl extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String tipoFigura = req.getParameter("tipoFigura");
+        String nombreFigura = req.getParameter("nombreFigura");
+        String grandor = req.getParameter("grandor");
+        String coordX = req.getParameter("coordX");
+        String coordY = req.getParameter("coordY");
+        String colorFondo = req.getParameter("colorFondo");
+        String colorBorde = req.getParameter("colorBorde");
+
+
+        if(tipoFigura != null && nombreFigura != null && grandor != null && coordX != null && coordY != null){
+            System.out.println("dentro de get eviar a jsp");
+            Figura pintarFigura = registroFigura.ObtenerValoresFigura(tipoFigura,nombreFigura, grandor, coordX, coordY, colorFondo, colorBorde);
+            req.setAttribute("pintarFigura", pintarFigura);
+        }else{
+            System.out.println("sin valores");
+            req.setAttribute("mensaje", " ¡¡ingrese valores!!");
+        }
+
+
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/GuardarFigura.jsp");
         dispatcher.forward(req,resp);
@@ -78,6 +98,8 @@ public class CrearFiguraControl extends HttpServlet {
           }else {
               req.setAttribute("mensaje", " ¡¡no se registro!!");
           }
+
+
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/JSP/GuardarFigura.jsp");

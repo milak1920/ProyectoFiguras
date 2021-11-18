@@ -3,7 +3,7 @@ package Package.Service;
 import Package.DAO.FiguraDao;
 import Package.DAO.FiguraDaoImplem;
 import Package.Modelo.Figura;
-import Package.Modelo.Usuario;
+
 
 import java.util.List;
 
@@ -45,11 +45,6 @@ public class RegistroFiguraServicio {
         return verFigurasUsuario;
     }
 
-
-
-
-
-
     //validar valores de figura
     public boolean valNombreFiguraRepetido(String nombreFigura){
         Figura validar = figuraDao.buscarNombreFigura(nombreFigura);
@@ -71,5 +66,23 @@ public class RegistroFiguraServicio {
         boolean numeroValido =  valor.matches("[+-]?\\d*(\\.\\d+)?");
         return numeroValido;
     }
+
+
+
+    public Figura ObtenerValoresFigura(String tipoFigura,String nombreFigura, String grandor,String coordX, String coordY, String colorFondo, String colorBorde){
+        Figura nuevaFigura = new Figura();
+        nuevaFigura.setTipoFigura(tipoFigura);
+        nuevaFigura.setNombreFigura(nombreFigura);
+        nuevaFigura.setGrandor(Integer.valueOf(grandor));
+        nuevaFigura.setCoordX(Integer.valueOf(coordX));
+        nuevaFigura.setCoordY(Integer.valueOf(coordY));
+        nuevaFigura.setColorBorde(colorBorde);
+        nuevaFigura.setColorFondo(colorFondo);
+        return nuevaFigura;
+    }
+
+
+
+
 
 }

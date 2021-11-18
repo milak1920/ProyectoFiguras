@@ -45,8 +45,7 @@
     	    <h2 style="color:#fff;" class="text-center">Formulario</h2>
             <form action="/inside/home" method="post" id="form">
              <label>Tipo de figura:</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tipoFigura" id="tipoFigura">
-                    <option value="circulo">Circulo</option>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tipoFigura" id="tipoFigura" value="${pintarFigura.tipoFigura}">                    <option value="circulo">Circulo</option>
                     <option value="cuadrado">Cuadrado</option>
                     <option value="triangulo">Triangulo</option>
                     <option value="pentagono">Pentagon</option>
@@ -54,7 +53,7 @@
                 </select>
                 <div class="mb-3">
      			    <label>Nombre Figura:</label>
-                    <input class="form-control" type="text" name="nombreFigura" id="nombreFigura">
+                    <input class="form-control" type="text" name="nombreFigura" id="nombreFigura" value="${pintarFigura.nombreFigura}">
                     <c:if test="${not empty errorNombreFigura}">
                         <div>
                             <div class="alert alert-danger" role="alert">
@@ -66,7 +65,7 @@
                 </div>
                 <div class="mb-3">
      			    <label>Tamaño Figura:</label>
-     			    <input class="form-control" type="text" name="grandor" id="grandor">
+     			    <input class="form-control" type="text" name="grandor" id="grandor" value="${pintarFigura.grandor}">
                     <c:if test="${not empty errorGrandor}">
                         <div>
                             <div class="alert alert-danger" role="alert">
@@ -78,7 +77,7 @@
                 </div>
                 <div class="mb-3">
      			    <label>Coordenada X:</label>
-     			    <input class="form-control" type="text" name="coordX" id="coordX">
+     			    <input class="form-control" type="text" name="coordX" id="coordX" value="${pintarFigura.coordX}">
                     <c:if test="${not empty errorCoordX}">
                         <div>
                             <div class="alert alert-danger" role="alert">
@@ -90,7 +89,7 @@
                 </div>
                 <div class="mb-3">
      			    <label>Coordenada Y:</label>
-     			    <input class="form-control" type="text" name="coordY" id="coordY">
+     			    <input class="form-control" type="text" name="coordY" id="coordY" value="${pintarFigura.coordY}"  >
                     <c:if test="${not empty errorCoordY}">
                         <div>
                             <div class="alert alert-danger" role="alert">
@@ -102,14 +101,14 @@
                 </div>
                 <div class="mb-3">
      			    <label>Color Fondo:</label>
-     			    <input class="form-control" type="color" name="colorFondo" id="colorFondo">
+     			    <input class="form-control" type="color" name="colorFondo" id="colorFondo" value="${pintarFigura.colorFondo}">
                 </div>
                 <div class="mb-3">
      			    <label>Color Borde:</label>
-     			    <input class="form-control" type="color" name="colorBorde" id="colorBorde">
+     			    <input class="form-control" type="color" name="colorBorde" id="colorBorde"  value="${pintarFigura.colorBorde}">
                 </div>
-                <input type="submit" value="guardar" class="btn btn-primary">
-                <input class="btn btn-light" type="button" value="Verificar"   id="ver" onclick="pintar()"/>
+               <input type="submit" value="guardar"  class="btn btn-primary">
+               <input type="submit" value="Visualizar"  formaction="/inside/home" formmethod="get"   class="btn btn-primary">
              </form>
             <c:if test="${not empty mensaje}">
                 <div>
@@ -125,136 +124,41 @@
        <div>
     </div>
   </div>
-</main>
+ </main>
 
 <footer>
 	<div class=" p-4 bg-dark text-white text-center">
  	 <p>Copyright © 2020. All rights reserved. @milagrosKarimChoqueCondori</p>
 	</div>
 </footer>
-
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/script.js"></script>
 
 <script>
 
+   const canvas = document.getElementById("canvas");
+   let ctx = canvas.getContext("2d");
 
 
- const canvas = document.getElementById("canvas");
- var ctx = canvas.getContext("2d");
-
- const circulo = function (colorBorde, colorFondo,coordX,coordY, grandor){
-     var X = coordX/2;
-     var Y = coordY/2;
-     var r = grandor;
-     ctx.strokeStyle = colorBorde;
-     ctx.fillStyle = colorFondo;
-     ctx.lineWidth = 5;
-     ctx.arc(X,Y,r,0,2*Math.PI);
-     ctx.fill();
-     ctx.stroke();
- };
- const cuadrado = function(colorBorde, colorFondo,coordX,coordY,grandor){
-     ctx.lineWidth = 5;
-     ctx.strokeStyle = colorBorde;
-     ctx.fillStyle = colorFondo;
-     ctx.rect(coordX, coordY, grandor, grandor);
-     ctx.stroke();
-     ctx.fill();
- };
-const triangulo = function(colorBorde,colorFondo,coordX,coordY,grandor){
-    let sWidth = coordX;
-    let sHeight = coordY;
-    ctx.beginPath();
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = colorBorde;
-    ctx.fillStyle = colorFondo;
-    ctx.moveTo((sWidth/2)+grandor,sHeight/2);
-    ctx.lineTo((sWidth/2),(sHeight/2)-grandor);
-    ctx.lineTo((sWidth/2)-grandor,sHeight/2);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-};
-
-const pentagono = function(coordX, coordY, grandor, rotation,colorBorde,colorFondo){
-    ctx.beginPath();
-    ctx.strokeStyle = colorBorde;
-    ctx.fillStyle = colorFondo;
-    ctx.lineWidth = 5;
-    for(var i = 0; i < 6; i ++){
-        const ang = (i / 5) * Math.PI * 2 + rotation;
-        ctx.lineTo(
-            Math.cos(ang) * grandor + coordX,
-            Math.sin(ang) * grandor + coordY
-        );
-     }
-     ctx.fill();
-     ctx.stroke();
-     ctx.closePath();
-};
-
-const estrella = function(context,n,grandor,R,x,y,lwid,colorBorde,colorFondo) {
-    ctx.save();
-    ctx.lineWidth=lwid;
-    ctx.beginPath();
-    ctx.strokeStyle = colorBorde;
-    ctx.fillStyle = colorFondo;
-    ctx.lineWidth = 5;
-    ctx.translate(x,y);
-    for(var i=0;i<n;i++){
-        ctx.lineTo(Math.cos(((1/4 + i)*2*Math.PI/n))*R,-Math.sin(((1/4 + i)*2*Math.PI/n))*R);
-        ctx.lineTo(Math.cos(((3/4 + i)*2*Math.PI/n))*grandor,-Math.sin(((3/4 + i)*2*Math.PI/n))*grandor);
-    }
-    ctx.fill();
-    ctx.stroke();
-    ctx.closePath();
-    ctx.stroke();
-    ctx.restore();
-};
+        let nombreFigura = "${pintarFigura.nombreFigura}";
+        let tipoFigura = "${pintarFigura.tipoFigura}";
+        let grandor = "${pintarFigura.grandor}";
+        let coordX = "${pintarFigura.coordX}";
+        let coordY = "${pintarFigura.coordY}";
+        let colorFondo = "${pintarFigura.colorFondo}"
+        let colorBorde = "${pintarFigura.colorBorde}";
 
 
 
-let prueba = true;
- function pintar(){
-     if(prueba){
 
-        let tipoFigura = document.getElementById("tipoFigura").value;
-        let nombreFigura = document.getElementById("nombreFigura").value;
-        let grandor = document.getElementById("grandor").value;
-        let coordX = document.getElementById("coordX").value;
-        let coordY = document.getElementById("coordY").value;
-        let colorFondo = document.getElementById("colorFondo").value;
-        let colorBorde = document.getElementById("colorBorde").value;
-
-        if (nombreFigura === ""){
-              document.getElementById('nombreFigura-error').className = 'alert alert-primary mt-2';
-              document.getElementById("nombreFigura-error").innerHTML = "** Se genera un nombre aleatorio";
-        }
-        valorGrandor = parseInt(grandor)
-        if (grandor === "" || isNaN(valorGrandor)){
-             document.getElementById('grandor-error').className = 'alert alert-danger mt-2';
-             document.getElementById("grandor-error").innerHTML = "** El valor esta vacio o no es númerico";
-        }
-        valorcoordX = parseInt(coordX)
-        if (coordX === "" || isNaN(valorcoordX)){
-             document.getElementById('coordX-error').className = 'alert alert-danger mt-2';
-             document.getElementById("coordX-error").innerHTML = "** El valor esta vacio o no es númerico";
-        }
-        valorcoordY = parseInt(coordY)
-        if (coordY === "" || isNaN(valorcoordY)){
-             document.getElementById('coordY-error').className = 'alert alert-danger mt-2';
-             document.getElementById("coordY-error").innerHTML = "** El valor esta vacio o no es númerico";
-        }
-
-      switch(tipoFigura) {
+         switch(tipoFigura) {
           case "circulo":
                circulo(colorBorde, colorFondo,coordX,coordY,grandor);
-            break;
+               break;
           case "cuadrado":
-              cuadrado(colorBorde, colorFondo,coordX,coordY,grandor);
-            break;
+               cuadrado(colorBorde, colorFondo,coordX,coordX,grandor);
+               break;
           case "triangulo":
-              triangulo(colorBorde,colorFondo,coordX,coordY,grandor);
+              drawTriangle(coordX, coordX, grandor, colorFondo);
               break;
           case "pentagono":
               pentagono(coordX,coordY,grandor,-Math.PI / 2,colorBorde,colorFondo);
@@ -266,16 +170,6 @@ let prueba = true;
               console.log("no has seleccionado nada");
         }
 
-         console.log("pintar");
-         document.getElementById("ver").value="Borrar";
-         prueba=false;
-     }else{
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
-         console.log("borrar");
-         document.getElementById("ver").value="Visualizar";
-         prueba=true;
-     }
-  };
 </script>
 </body>
 </html>
