@@ -48,17 +48,28 @@ public class HistorialControl extends HttpServlet {
 
         String idFiguraBorrar = req.getParameter("figuraBorrar");
 
-        //session id
-        String idSessionUsuario = String.valueOf(session.getAttribute("id"));
-        String idUsuarioServer = req.getParameter("usuarioID");
-         //fin
 
+        if(idFiguraBorrar != null){
+            //session id
+            String idSessionUsuario = String.valueOf(session.getAttribute("id"));
+            List<Figura> idUsuarioServer = registroFigura.obtenerFiguraUnicaVer(Integer.parseInt(idFiguraBorrar));
+            String idUsuarioFigura = String.valueOf(idUsuarioServer.get(0).getUsuarioID());
+            //fin
+            if(idSessionUsuario.equals(idUsuarioFigura)){
+                System.out.println("se borro correctamente con id de usuario " + idUsuarioFigura + "session id " + idSessionUsuario);
+                int idFigura = Integer.parseInt(idFiguraBorrar);
+                registroFigura.eliminarFigura(idFigura);
+            }
+        }
+
+
+         /*
         //borrar del historial
-        if(idFiguraBorrar != null && idSessionUsuario.equals(idUsuarioServer)){
+        if(idFiguraBorrar != null && idSessionUsuario.equals(idUsuarioFigura)){
             System.out.println("se borro correctamente con id de usuario " + idUsuarioServer + "session id " + idSessionUsuario);
             int idFigura = Integer.parseInt(idFiguraBorrar);
            registroFigura.eliminarFigura(idFigura);
-        }
+        }*/
         System.out.println("ahora visualizar denuevo historial ok");
 
         List<Figura> mostrarFigurasUsuario = registroFigura.buscarFiguraUsuario(id);

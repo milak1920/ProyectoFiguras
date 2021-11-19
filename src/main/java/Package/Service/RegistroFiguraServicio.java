@@ -83,6 +83,7 @@ public class RegistroFiguraServicio {
     }
 
 
+    //obtener usuario id por el nombre de figura
 
 
 
